@@ -1,4 +1,6 @@
-te.py
+#!/usr/bin/env python3
+"""
+7-evaluate.py
 Evaluates a trained neural network
 """
 
@@ -32,3 +34,4 @@ def evaluate(X, Y, save_path):
 
         pred, acc, cost = sess.run([y_pred, accuracy, loss], feed_dict={x: X, y: Y})
     return pred, acc, cost
+
