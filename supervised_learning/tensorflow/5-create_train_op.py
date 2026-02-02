@@ -6,6 +6,7 @@ Creates the training operation using gradient descent
 
 import tensorflow as tf
 
+
 def create_train_op(loss, alpha):
     """
     Creates the training operation
