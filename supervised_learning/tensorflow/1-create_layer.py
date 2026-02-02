@@ -6,6 +6,7 @@ Creates a fully connected neural network layer
 
 import tensorflow as tf
 
+
 def create_layer(prev, n, activation):
     """
     Creates a layer of a neural network using He initialization

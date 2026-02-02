@@ -5,6 +5,8 @@ Evaluates a trained neural network
 """
 
 import tensorflow as tf
+import numpy as np
+
 
 def evaluate(X, Y, save_path):
     """
@@ -31,6 +33,6 @@ def evaluate(X, Y, save_path):
         loss = tf.get_collection('loss')[0]
         accuracy = tf.get_collection('accuracy')[0]
 
-        pred, acc, cost = sess.run([y_pred, accuracy, loss], feed_dict={x: X, y: Y})
+        pred, acc, cost = sess.run([y_pred, accuracy, loss],
+                                   feed_dict={x: X, y: Y})
     return pred, acc, cost
-

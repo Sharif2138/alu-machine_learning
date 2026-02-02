@@ -5,12 +5,14 @@ Builds, trains, and saves a neural network
 """
 
 import tensorflow as tf
+import numpy as np
 
 create_placeholders = __import__('0-create_placeholders').create_placeholders
 forward_prop = __import__('2-forward_prop').forward_prop
 calculate_loss = __import__('4-calculate_loss').calculate_loss
 calculate_accuracy = __import__('3-calculate_accuracy').calculate_accuracy
 create_train_op = __import__('5-create_train_op').create_train_op
+
 
 def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
           alpha, iterations, save_path="/tmp/model.ckpt"):
@@ -49,8 +51,10 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
         for i in range(iterations + 1):
-            train_cost, train_acc = sess.run([loss, accuracy], feed_dict={x: X_train, y: Y_train})
-            valid_cost, valid_acc = sess.run([loss, accuracy], feed_dict={x: X_valid, y: Y_valid})
+            train_cost, train_acc = sess.run([loss, accuracy],
+                                             feed_dict={x: X_train, y: Y_train})
+            valid_cost, valid_acc = sess.run([loss, accuracy],
+                                             feed_dict={x: X_valid, y: Y_valid})
 
             if i % 100 == 0 or i == iterations:
                 print("After {} iterations:".format(i))
@@ -65,4 +69,3 @@ def train(X_train, Y_train, X_valid, Y_valid, layer_sizes, activations,
         saver = tf.train.Saver()
         saver.save(sess, save_path)
     return save_path
-
