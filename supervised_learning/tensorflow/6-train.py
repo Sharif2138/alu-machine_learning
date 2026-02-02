@@ -5,7 +5,7 @@ Builds, trains, and saves a neural network
 """
 
 import tensorflow as tf
-import numpy as np
+
 
 create_placeholders = __import__('0-create_placeholders').create_placeholders
 forward_prop = __import__('2-forward_prop').forward_prop
